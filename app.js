@@ -24,6 +24,8 @@ const movieApp = {};
 
 movieApp.apiKey = "e21d59eeaa5f5c9a061e1be07d38cac1"
 
+movieApp.movieList = [];
+
 movieApp.getMovie = function() {
     // build url endpoint
     const movieUrl = new URL(`https://api.themoviedb.org/3/movie/popular`);
@@ -38,7 +40,9 @@ movieApp.getMovie = function() {
     })
     .then(function(jsonResponse){
         console.log(jsonResponse);
-        movieApp.displayMovie(jsonResponse.results);
+        movieApp.movieList = jsonResponse;
+        console.log(movieApp.movieList);
+        movieApp.displayMovie(movieApp.movieList);
     })
 }
 
