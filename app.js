@@ -86,5 +86,4 @@ movieApp.init = function () {
     movieApp.getMovie();
     movieApp.setUpEventListeners();
 }
-
 movieApp.init()
