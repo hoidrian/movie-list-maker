@@ -26,7 +26,7 @@ movieApp.apiKey = "e21d59eeaa5f5c9a061e1be07d38cac1"
 
 movieApp.movieList = [];
 
-movieApp.getMovie = function() {
+movieApp.getMovieList = function() {
     // build url endpoint
     const movieUrl = new URL(`https://api.themoviedb.org/3/movie/popular`);
     //add in params
@@ -39,9 +39,7 @@ movieApp.getMovie = function() {
         return response.json();
     })
     .then(function(jsonResponse){
-        console.log(jsonResponse);
-        movieApp.movieList = jsonResponse;
-        console.log(movieApp.movieList);
+        movieApp.movieList = jsonResponse.results;
         movieApp.displayMovie(movieApp.movieList);
     })
 }
@@ -60,8 +58,6 @@ movieApp.displayMovie = function(movieArray) {
     document.querySelector(".movie").appendChild(movieInfo);
     return movieArray;
 }
-
-console.log(movieApp.movies);
 
 movieApp.setUpEventListeners = function() {
     const yesButton = document.querySelector(".yes");
@@ -83,7 +79,8 @@ movieApp.setUpEventListeners = function() {
 }
 
 movieApp.init = function () {
-    movieApp.getMovie();
+    movieApp.getMovieList();
     movieApp.setUpEventListeners();
 }
+
 movieApp.init()
